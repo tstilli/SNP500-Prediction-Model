@@ -112,7 +112,7 @@ class RealtimePrediction(Base):
         return f"<RealtimePrediction(id={self.id}, timestamp='{self.timestamp}', market_sentiment={self.market_sentiment_score})>"
 
 #table added by Taaj to store SEC JSON data
-class SECFillings(Base):
+class SECFilings(Base):
     __tablename__ = 'sec_filings'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -132,7 +132,7 @@ class SECFillings(Base):
     )
 
     def __repr__(self):
-        return f"<SECFillings(accession={self.accession_number}, chunk_id={self.chunk_id})>"
+        return f"<SECFilings(accession={self.accession_number}, chunk_id={self.chunk_id})>"
 
 # Database setup
 def get_db_session():

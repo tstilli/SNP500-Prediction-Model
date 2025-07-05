@@ -1,7 +1,7 @@
 import os
 import json
 from database import get_db_session, SECFilings 
-#from tqdm import tqdm  
+from tqdm import tqdm  
 
 DATA_DIR = "S:\\Repositories\\vectorDB\\data\\silver"
 
