@@ -111,6 +111,28 @@ class RealtimePrediction(Base):
     def __repr__(self):
         return f"<RealtimePrediction(id={self.id}, timestamp='{self.timestamp}', market_sentiment={self.market_sentiment_score})>"
 
+#table added by Taaj to store SEC JSON data
+class SECFillings(Base):
+    __tablename__ = 'sec_filings'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    accession_number = Column(String, nullable=False, index=True)  
+    chunk_id = Column(Integer, nullable=False)                     
+    text = Column(Text, nullable=False)                            
+    company_name = Column(String)
+    filing_date = Column(String, index=True)                        
+    form_type = Column(String)
+    cik = Column(String)
+    source_file = Column(String)
+    metadata_json = Column(JSON)                                   
+
+    __table_args__ = (
+        # Prevent duplicates if multiple ingestions run
+        UniqueConstraint('accession_number', 'chunk_id', name='uix_accession_chunk'),
+    )
+
+    def __repr__(self):
+        return f"<SECFillings(accession={self.accession_number}, chunk_id={self.chunk_id})>"
 
 # Database setup
 def get_db_session():
